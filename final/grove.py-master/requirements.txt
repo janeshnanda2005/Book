@@ -1,0 +1,5 @@
+requests
+datetime
+firebase-admin
+smbus2
+RPi.GPIO
