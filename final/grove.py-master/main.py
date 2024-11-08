@@ -3,9 +3,11 @@ import datetime
 import time
 import firebase_admin
 from firebase_admin import credentials, db
+import color
 from grove.display.jhd1802 import JHD1802
 
 lcd = JHD1802()
+
 
 
 cred = credentials.Certificate('/home/kgx/Desktop/final/grove.py-master/cred.json')
@@ -15,10 +17,6 @@ firebase_admin.initialize_app(cred, {
 
 API_KEY = 'AIzaSyARlrYxIKVkTUQLXA796cQjxWZXcx-BHFI'
 
-
-#def set_RGB(r,g,b):9781612680194
-
- #   lcd.setRGB(r,g,b)
 
 
 def display_message1(line1=''):
@@ -50,11 +48,13 @@ def getbook(isbn):
 def write_book():
     counter = 1
     while True:
+        color.setRGB(102,102,255)
         display_message1("Drop Your Book!")
-        #set_RGB(255,0,0)
-
+       
+        
         display_message2("Scan Your Book:")
-        #set_RGB(0,0,0)
+        
+
         
         isbn_book1 = input()
 
@@ -70,23 +70,24 @@ def write_book():
         exception_val = ["No book found"] 
 
         if book1 in exception_val:
+            color.setRGB(255,0,0)
             display_message1("No book found")
             time.sleep(2)
             lcd.home()
             continue
         
-        
+        color.setRGB(176,191,26)
         display_message1("Book Title")
         display_message2(f"{book1}")
-        #set_RGB(255,0,0)
+       
 
         time.sleep(2)
 
         lcd.clear()
 
+
+        color.setRGB(102,102,255)
         display_message1("Scan New Book!!")
-        #display_message2()
-        #set_RGB(255,0,0)
         isbn_book2 = input()
     
         time.sleep(2)
@@ -97,10 +98,10 @@ def write_book():
         val_1 = datetime.datetime.now().isoformat()
         book2 = getbook(isbn_book2)
         
-        
+        color.setRGB(176,191,26)
         display_message1(f"Book Title")
         display_message2(f"{book2}")
-        #set_RGB(255,0,0)
+       
 
         time.sleep(2)
 
